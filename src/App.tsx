@@ -40,6 +40,7 @@ const App=() =>{
     console.log(questions);
   };
   const checkAnswer=(e: React.MouseEvent<HTMLButtonElement>)=>{
+    console.log("click on the selection");
      if(!gameOver){
        //check the answer
        const answer=e.currentTarget.value;
@@ -47,6 +48,8 @@ const App=() =>{
       //add score if answer is correct
       const correct=questions[number].correct_answer===answer;
       if(correct) setScore(prev=>prev +1);
+      console.log(userAnswers);
+      setUserAnswers(prev=>prev.filter((item, j) => number !== j));
 
       const answerObject={
         question: questions[number].question,
@@ -54,6 +57,7 @@ const App=() =>{
         correct,
         correctAnswer: questions[number].correct_answer
       };
+      console.log(userAnswers);
       setUserAnswers(prev=>[...prev, answerObject]);
 
      }
